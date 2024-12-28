@@ -6,7 +6,6 @@ Next, I turned to Base64 encoding, but I still needed to make it URL-safe, which
 So, I decided to create this package. It started as a solution for my Laravel project, but I quickly realized its usefulness beyond that and made it a standalone package that can be used in any PHP project.
 With this package, I aimed to provide a simple, secure, and customizable encoding/decoding mechanism with support for Base62 encoding (which is URL-safe), and the ability to easily add more bases like Base58, Base64, or even your own custom encoding schemes.
 
-
 > **Warning**: This package is designed for encoding and obfuscation, not for encryption. It does not provide strong cryptographic security. Use it for non-sensitive data or as a lightweight obfuscation method.
 ### Features
 - **Base Encoding**: Supports customizable bases, including Base62 and others.
