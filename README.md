@@ -1,5 +1,5 @@
-## Encoder Package
-The Encoder package provides a robust and secure way to `encode` and `decode` **IDs** & **Strings** using customizable Base encoding mechanisms (e.g., Base62). With support for variable-length encoding, mappers for added security, and seamless integration with Laravel, this package is ideal for obfuscating sensitive data or creating URL-safe identifiers.
+## Laravel Encoder Package
+The Laravel Encoder package provides a robust and secure way to `encode` and `decode` **IDs** & **Strings** using customizable Base encoding mechanisms (Base62). With support for variable-length encoding, mappers for added security, and seamless integration with Laravel, this package is ideal for obfuscating sensitive data or creating URL-safe identifiers.
 ### Why I Created This Package
 In one of my Laravel projects, I needed a way to `encode` & `decode` some strings. Initially, I tried using Laravel's built-in `encrypt` and `decrypt` functions, but they returned very long strings, which were not ideal for my use case.
 Next, I turned to Base64 encoding, but I still needed to make it URL-safe, which added complexity. After looking around, I realized that there wasn't a straightforward package that supported encoding both IDs and strings while providing a customizable approach and URL-safe encoding.
@@ -20,13 +20,61 @@ With this package, I aimed to provide a simple, secure, and customizable encodin
 - PHP 8.0 or higher
 - Laravel 10 or higher (optional, for Laravel integration)
 - `bcmath` PHP extension enabled
-- `mbstring` PHP extension enabled for encoding and decoding multi-byte strings (e.g., Persian, Arabic, etc.)
+- `mbstring` PHP extension enabled for encoding and decoding multi-byte strings (Persian, Arabic, etc.)
 
 ### Installation
 **Step 1: Install via Composer**
 ```
 composer require nassiry/laravel-encoder
 ```
+### Laravel Integration
+This package integrates seamlessly with Laravel, making it easy to encode or decode IDs and strings using the service container, dependency injection, or facades.
+#### Using the Service Container
+
+```
+$encoder = app('Encoder');
+
+// Encoding and Decoding IDs
+$encodedId = $encoder->encodeId(12345);
+$decodedId = $encoder->decodeId($encodedId);
+
+// Encoding and Decoding Strings
+$encodedString = $encoder->encodeString('Hello World');
+$decodedString = $encoder->decodeString($encodedString);
+```
+#### Using Dependency Injection
+For better maintainability and testability, inject the encoder into your controllers or services:
+```
+use Nassiry\Encoder\Encoder;
+
+class MyController extends Controller
+{
+    public function __construct(protected Encoder $encoder)
+    {
+        // Your other codes
+    }
+
+    public function encodeData()
+    {
+        $encoded = $this->encoder->encodeString('my data');
+        return response()->json(['encoded' => $encoded]);
+    }
+}
+```
+#### Using the Facade
+The package provides a facade for quick access to encoder methods:
+```
+use Nassiry\Encoder\Facades\Encoder;
+
+// Encoding and Decoding IDs
+$encodedId = Encoder::encodeId(12345);
+$decodedId = Encoder::decodeId($encodedId);
+
+// Encoding and Decoding Strings
+$encodedString = Encoder::encodeString('Hello World');
+$decodedString = Encoder::decodeString($encodedString);
+```
+
 ### Standalone Usage
 To use the package in a non-Laravel PHP project, follow these steps:
 1. #### Usage Example
@@ -81,58 +129,11 @@ $customEncodedId = $encoder->encodeId(12345, 3);
 echo "Custom Encoded ID: $customEncodedId\n"; // qVX
 ```
 #### Important Notes:
-  1. The `$length` parameter represents the **index** in the configuration array, **not the key value**.
-  2. It must always be smaller than the highest index of the configuration array.
-  3. For example, in the above `$config`, the valid values for `$length` are `0`, `1`, `2`, `3`, or `4` (total of 5 elements, indices `0–4`).
-### Laravel Integration
-This package integrates seamlessly with Laravel, making it easy to encode or decode IDs and strings using the service container, dependency injection, or facades.
-#### Using the Service Container
-
-```
-$encoder = app('Encoder');
-
-// Encoding and Decoding IDs
-$encodedId = $encoder->encodeId(12345);
-$decodedId = $encoder->decodeId($encodedId);
-
-// Encoding and Decoding Strings
-$encodedString = $encoder->encodeString('Hello World');
-$decodedString = $encoder->decodeString($encodedString);
-```
-#### Using Dependency Injection
-For better maintainability and testability, inject the encoder into your controllers or services:
-```
-use Nassiry\Encoder\Encoder;
-
-class MyController extends Controller
-{
-    public function __construct(protected Encoder $encoder)
-    {
-        // Your other codes
-    }
-
-    public function encodeData()
-    {
-        $encoded = $this->encoder->encodeString('my data');
-        return response()->json(['encoded' => $encoded]);
-    }
-}
-```
-#### Using the Facade
-The package provides a facade for quick access to encoder methods:
-```
-use Nassiry\Encoder\Facades\Encoder;
-
-// Encoding and Decoding IDs
-$encodedId = Encoder::encodeId(12345);
-$decodedId = Encoder::decodeId($encodedId);
-
-// Encoding and Decoding Strings
-$encodedString = Encoder::encodeString('Hello World');
-$decodedString = Encoder::decodeString($encodedString);
-```
+1. The `$length` parameter represents the **index** in the configuration array, **not the key value**.
+2. It must always be smaller than the highest index of the configuration array.
+3. For example, in the above `$config`, the valid values for `$length` are `0`, `1`, `2`, `3`, or `4` (total of 5 elements, indices `0–4`).
 ### Encoder Configuration File
-**Note:** This configuration file is applicable only when using the package with a Laravel application.
+**Note:** This configuration file is applicable only when using the package with a **Laravel application**.
 For standalone usage, you need to provide configuration directly while initializing the `Encoder` class.
 This file allows you to set up the default base encoder and customize its behavior within Laravel.
 By default, the package uses the `base62` encoder, but you can define additional configurations
@@ -158,7 +159,7 @@ php artisan vendor:publish --provider="Nassiry\Encoder\EncoderServiceProvider"
 ```
 After publishing, you can modify the configuration to suit your application's needs.
 ### Custom Bases: Add Your Own Encoding Scheme
-  - If you are implementing your own Base class (e.g., Base58 or Base64):
+  - If you are implementing your own Base class (Base58 or Base64):
   - Implement the `BaseEncoderInterface` in your class.
   - Add your custom base to the `BaseFactory`.
   -  Use this `config` array to define any specific configuration required for your custom base.
@@ -216,7 +217,7 @@ The `EncoderException` class extends PHP's `RuntimeException` and provides stati
 - **Invalid Length**: Thrown when length is not a valid non-negative integer.
 - **Empty Input**: Thrown when the input string is empty.
 - **Invalid Base String**: Thrown when a string contains invalid characters for the base.
-- **Invalid Base**: Thrown when a base (e.g., Base58 or Base64) is not registered in the Factory.
+- **Invalid Base**: Thrown when a base (Base58 or Base64) is not registered in the Factory.
 - **Invalid Method Call**: Thrown when an undefined method is called on a base encoder.
 - **Invalid Class**: Thrown when a custom base class does not implement the required `BaseEncoderInterface`.
 ```
