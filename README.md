@@ -80,7 +80,7 @@ $customEncodedId = $encoder->encodeId(12345, 3);
 
 echo "Custom Encoded ID: $customEncodedId\n"; // qVX
 ```
-####Important Notes:
+#### Important Notes:
   1. The `$length` parameter represents the **index** in the configuration array, **not the key value**.
   2. It must always be smaller than the highest index of the configuration array.
   3. For example, in the above `$config`, the valid values for `$length` are `0`, `1`, `2`, `3`, or `4` (total of 5 elements, indices `0–4`).
