@@ -25,7 +25,7 @@ With this package, I aimed to provide a simple, secure, and customizable encodin
 ### Installation
 **Step 1: Install via Composer**
 ```
-composer require nassiry/encoder --no-dev
+composer require nassiry/laravel-encoder --no-dev
 ```
 ### Standalone Usage
 To use the package in a non-Laravel PHP project, follow these steps:
