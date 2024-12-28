@@ -52,5 +52,7 @@
     },
     "suggest": {
         "illuminate/support": "Required for seamless Laravel integration."
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
