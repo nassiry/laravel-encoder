@@ -27,7 +27,7 @@ With this package, I aimed to provide a simple, secure, and customizable encodin
 ```
 composer require nassiry/encoder --no-dev
 ```
-### Standalone Usage.
+### Standalone Usage
 To use the package in a non-Laravel PHP project, follow these steps:
 1. #### Usage Example
 ```
