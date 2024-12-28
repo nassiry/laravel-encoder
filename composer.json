@@ -1,5 +1,5 @@
 {
-    "name": "nassiry/encoder",
+    "name": "nassiry/laravel-encoder",
     "description": "An advanced Laravel encoder package for string & integer encoding and decoding.",
     "keywords": [
         "base62",
