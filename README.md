@@ -95,7 +95,7 @@ $decodedId = $encoder->decodeId($encodedId);
 echo "Decoded ID: $decodedId\n"; // 12345
 
 // Encoding an ID with length
-$encodedId = $encoder->encodeId(12345, 8); // Length refers to the index in the config array
+$encodedId = $encoder->encodeId(12345, 8); 
 echo "Encoded ID: $encodedId\n"; // d29Buhe7
 
 // Decoding an ID
