@@ -1,7 +1,7 @@
 ![Tests](https://github.com/nassiry/laravel-encoder/actions/workflows/php.yml/badge.svg)
 ![Packagist Downloads](https://img.shields.io/packagist/dt/nassiry/laravel-encoder)
 ![Packagist Version](https://img.shields.io/packagist/v/nassiry/laravel-encoder)
-![Laravel](https://img.shields.io/badge/Laravel-8%20%7C%209%20%7C%2010%20%7C%2011-red)
+![Laravel](https://img.shields.io/badge/Laravel-10%20%7C%2011-red)
 ![PHP](https://img.shields.io/badge/PHP-%5E8.0-blue)
 ![License](https://img.shields.io/github/license/nassiry/laravel-encoder)
 ## Laravel Encoder Package
@@ -23,7 +23,7 @@ With this package, I aimed to provide a simple, secure, and customizable `encodi
 - **Security**: Protects sensitive IDs by ensuring encoded values are not easily reversible without the correct configuration.
 
 ### Requirements
-- PHP 8.0 or higher
+- PHP 8.1 or higher
 - Laravel 10 or higher (optional, for Laravel integration)
 - `bcmath` PHP extension enabled
 - `mbstring` PHP extension enabled for encoding and decoding multi-byte strings (Persian, Arabic, etc.)
