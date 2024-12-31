@@ -1,3 +1,9 @@
+![Tests](https://github.com/nassiry/laravel-encoder/actions/workflows/php.yml/badge.svg)
+![Packagist Downloads](https://img.shields.io/packagist/dt/nassiry/laravel-encoder)
+![Packagist Version](https://img.shields.io/packagist/v/nassiry/laravel-encoder)
+![Laravel](https://img.shields.io/badge/Laravel-8%20%7C%209%20%7C%2010%20%7C%2011-red)
+![PHP](https://img.shields.io/badge/PHP-%5E8.0-blue)
+![License](https://img.shields.io/github/license/nassiry/laravel-encoder)
 ## Laravel Encoder Package
 The Laravel Encoder package provides a robust and secure way to `encode` and `decode` **IDs** & **Strings** using customizable Base encoding mechanisms (Base62). With support for variable-length encoding, mappers for added security, and seamless integration with Laravel, this package is ideal for obfuscating sensitive data or creating URL-safe identifiers.
 ### Why I Created This Package
