@@ -4,7 +4,7 @@ The Laravel Encoder package provides a robust and secure way to `encode` and `de
 In one of my Laravel projects, I needed a way to `encode` & `decode` some strings. Initially, I tried using Laravel's built-in `encrypt` and `decrypt` functions, but they returned very long strings, which were not ideal for my use case.
 Next, I turned to Base64 encoding, but I still needed to make it URL-safe, which added complexity. After looking around, I realized that there wasn't a straightforward package that supported encoding both **IDs** and **strings** while providing a customizable approach and URL-safe encoding.
 So, I decided to create this package. It started as a solution for my Laravel project, but I quickly realized its usefulness beyond that and made it a standalone package that can be used in any PHP project.
-With this package, I aimed to provide a simple, secure, and customizable encoding/decoding mechanism with support for Base62 encoding (which is URL-safe), and the ability to easily add more bases like Base58, Base64, or even your own custom encoding schemes.
+With this package, I aimed to provide a simple, secure, and customizable `encoding/decoding` mechanism with support for Base62 encoding (which is URL-safe), and the ability to easily add more bases like Base58, Base64, or even your own custom encoding schemes.
 
 > **Warning**: This package is designed for encoding and obfuscation, not for encryption. It does not provide strong cryptographic security. Use it for non-sensitive data or as a lightweight obfuscation method.
 ### Features
