@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static string encodeString(string $string)
  * @method static string decodeString(string $string)
- * @method static int|string encodeId(int|string $id, int $length)
+ * @method static int|string encodeId(int|string $id, int $length = 7)
  * @method static string decodeId(string $string)
  */
 class Encoder extends Facade
