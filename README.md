@@ -30,14 +30,14 @@ With this package, I aimed to provide a simple, secure, and customizable `encodi
 
 ### Installation
 **Step 1: Install via Composer**
-```
+```bash
 composer require nassiry/laravel-encoder
 ```
 ### Laravel Integration
 This package integrates seamlessly with Laravel, making it easy to encode or decode IDs and strings using the service container, dependency injection, or facades.
 #### Using the Service Container
 
-```
+```php
 $encoder = app('Encoder');
 
 // Encoding and Decoding IDs
@@ -50,7 +50,7 @@ $decodedString = $encoder->decodeString($encodedString);
 ```
 #### Using Dependency Injection
 For better maintainability and testability, inject the encoder into your controllers or services:
-```
+```php
 use Nassiry\Encoder\Encoder;
 
 class MyController extends Controller
@@ -69,7 +69,7 @@ class MyController extends Controller
 ```
 #### Using the Facade
 The package provides a facade for quick access to encoder methods:
-```
+```php
 use Nassiry\Encoder\Facades\Encoder;
 
 // Encoding and Decoding IDs
@@ -84,7 +84,7 @@ $decodedString = Encoder::decodeString($encodedString);
 ### Standalone Usage
 To use the package in a non-Laravel PHP project, follow these steps:
 1. #### Usage Example
-```
+```php
 require __DIR__ . '/vendor/autoload.php';
 
 use Nassiry\Encoder\Encoder;
@@ -118,7 +118,7 @@ echo "Decoded String: $decodedString\n"; // Hello World
 ```
 2. #### Custom Configuration
 When using a custom configuration, ensure that the `$length` parameter in the `encodeId` function is **an index within the configuration array**. It must be smaller than the last index of the configuration array.
-```
+```php
 $config = [
      1 => '1',
     41 => '59',
@@ -149,7 +149,7 @@ If you are using the default Base62 implementation, you can override its default
 by specifying custom mappings in the `config` array below. These mappers are used to obfuscate
 the encoding process by applying prime numbers for variable-length encoding.
 Example for overriding Base62 mappers:
-```
+```php
 'config' => [
     1 => '1',
     5 => '41',
@@ -160,7 +160,7 @@ Example for overriding Base62 mappers:
 ```
 ### Usage in Laravel
 To publish this configuration file, run the following command:
-```
+```bash
 php artisan vendor:publish --provider="Nassiry\Encoder\EncoderServiceProvider"
 ```
 After publishing, you can modify the configuration to suit your application's needs.
@@ -169,7 +169,7 @@ After publishing, you can modify the configuration to suit your application's ne
   - Implement the `BaseEncoderInterface` in your class.
   - Add your custom base to the `BaseFactory`.
   -  Use this `config` array to define any specific configuration required for your custom base.
-```
+```php
 use Nassiry\Encoder\Bases\BaseEncoderInterface;
 
 class Base58 implements BaseEncoderInterface
@@ -196,7 +196,7 @@ class Base58 implements BaseEncoderInterface
 }
 ```
 ### Register the new base in the `BaseFactory` - `create` method:
-```
+```php
 return match (strtolower($base)) {
     'base62' => new Base62($config),
     'base58' => new Base58($config),  // Register Base58 here
@@ -204,7 +204,7 @@ return match (strtolower($base)) {
 };
 ```
 ### Use your custom base like this:
-```
+```php
 use Nassiry\Encoder\Encoder;
 
 $encoder = new Encoder('base58');
@@ -226,7 +226,7 @@ The `EncoderException` class extends PHP's `RuntimeException` and provides stati
 - **Invalid Base**: Thrown when a base (Base58 or Base64) is not registered in the Factory.
 - **Invalid Method Call**: Thrown when an undefined method is called on a base encoder.
 - **Invalid Class**: Thrown when a custom base class does not implement the required `BaseEncoderInterface`.
-```
+```php
 EncoderException::invalidId(); 
 // Message: "The ID must be a non-negative integer."
 
@@ -250,7 +250,7 @@ EncoderException::invalidClass(string $className);
 ```
 #### Example: Catching Exceptions
 You can wrap your encoding/decoding logic in a `try-catch` block to handle exceptions gracefully:
-```
+```php
 use Nassiry\Encoder\Exceptions\EncoderException;
 
 try {
@@ -263,13 +263,13 @@ try {
 To ensure the package functions as expected and meets all requirements, you can run the included tests. Follow the steps below to execute the test suite:
 #### Prerequisites
 1. Ensure you have all dependencies installed by running:
-```
+```bash
 composer install
 ```
 2. Verify that the required PHP extensions (`bcmath` and `mbstring`) are enabled.
 #### Running Tests
 Execute the following command to run the test suite:
-```
+```bash
 composer test
 ```
 #### Test Coverage
