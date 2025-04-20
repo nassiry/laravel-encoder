@@ -19,6 +19,7 @@
     "homepage": "https://github.com/nassiry/laravel-encoder",
     "license": "MIT",
     "author": "A.S Nassiry",
+    "version": "1.0.1",
     "require": {
         "php": "^8.1",
         "ext-mbstring": "*",
@@ -49,6 +50,18 @@
                 "Encoder": "Nassiry\\Encoder\\Facades\\Encoder"
             }
         }
+    },
+    "archive": {
+        "exclude": [
+            "/assets",
+            "/docs",
+            "/tests",
+            "/.github",
+            "/.gitignore",
+            "/.gitattributes",
+            "/phpunit.xml",
+            "/CHANGELOG.md"
+        ]
     },
     "suggest": {
         "illuminate/support": "Required for seamless Laravel integration."
